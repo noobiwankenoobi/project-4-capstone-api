@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20170612032113) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title"
-    t.string   "cover_url"
-    t.integer  "progress"
+    t.string   "title",      null: false
+    t.string   "cover_url",  null: false
+    t.integer  "progress",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree

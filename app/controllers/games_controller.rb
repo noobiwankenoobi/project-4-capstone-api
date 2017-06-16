@@ -1,4 +1,4 @@
-class GamesController < ApplicationController
+class GamesController < ProtectedController
   before_action :set_game, only: [:show, :update, :destroy]
 
   # GET /games
@@ -16,7 +16,7 @@ class GamesController < ApplicationController
   # POST /games
   def create
     @game = Game.new(game_params)
-
+    @game.user_id = @current_user.id
     if @game.save
       render json: @game, status: :created, location: @game
     else

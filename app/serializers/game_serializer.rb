@@ -1,4 +1,3 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :title, :cover_url, :progress
-  has_one :user
+  attributes :id, :user_id, :title, :cover_url, :progress
 end
