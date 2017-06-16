@@ -3,13 +3,13 @@ class GamesController < ProtectedController
 
   # GET /games
   def index
-    @games = Game.all
-
+    @games = Game.where('user_id = ?', @current_user.id)
     render json: @games
   end
 
   # GET /games/1
   def show
+    return false if @game.user_id != @current_user.id
     render json: @game
   end
 
@@ -26,6 +26,7 @@ class GamesController < ProtectedController
 
   # PATCH/PUT /games/1
   def update
+    return false if @game.user_id != @current_user.id
     if @game.update(game_params)
       render json: @game
     else
@@ -35,6 +36,7 @@ class GamesController < ProtectedController
 
   # DELETE /games/1
   def destroy
+    return false if @game.user_id != @current_user.id
     @game.destroy
   end
 
